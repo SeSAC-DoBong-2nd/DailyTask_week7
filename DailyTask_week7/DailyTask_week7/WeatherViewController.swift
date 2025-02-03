@@ -174,6 +174,7 @@ private extension WeatherViewController {
     }
     
     func checkCurrentLocationAuth(status: CLAuthorizationStatus) {
+        print(#function)
         let status = locationManager.authorizationStatus
         
         switch status {
@@ -184,9 +185,6 @@ private extension WeatherViewController {
         case .denied:
             //앱 내 위치 권한 거부 시: 도봉 캠퍼스가 맵뷰 중심으로.
             print("checkLocationAuthStatus denied")
-            let coordinate = CLLocationCoordinate2D(latitude: 37.6545021055909, longitude: 127.049672533607)
-            setRegionAndAnnotation(coordinate: coordinate, isValidLocationAuth: false)
-            
             //현위치를 눌렀을 때만 alert이 동작하도록 isRefresh 변수 활용
             if !isRefresh {
                 showAlertAboutLocationSetting()
@@ -259,11 +257,11 @@ private extension WeatherViewController {
         
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
-            tempLabel.text = "현재 온도: " + String(result.main.temp)
-            tempMinLabel.text = "최저 온도: " + String(result.main.tempMin)
-            tempMaxLabel.text = "최고 온도: " + String(result.main.tempMax)
-            humidityLabel.text = "습도: " + String(result.main.humidity) + "%"
-            speedLabel.text = "풍속: " + String(result.wind.speed)
+            tempLabel.text = "현재 온도: " + String(result.main.temp ?? 0)
+            tempMinLabel.text = "최저 온도: " + String(result.main.tempMin ?? 0)
+            tempMaxLabel.text = "최고 온도: " + String(result.main.tempMax ?? 0)
+            humidityLabel.text = "습도: " + String(result.main.humidity ?? 0) + "%"
+            speedLabel.text = "풍속: " + String(result.wind.speed ?? 0)
             
             [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
                 $0.alpha = 1
@@ -308,14 +306,14 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
     
     //사용자 위치 가져오기 성공
+    //해당 함수는 iOS GPS가 더 정확한 정보를 가져오고자 초기 실행시 횟수가 다방면으로 발생.
+    //어떻게 해결해야할까
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function)
-        print()
         guard let coordinate = locations.last?.coordinate
         else { return print("guard let region error") }
-        
-        setRegionAndAnnotation(coordinate: coordinate)
         locationManager.stopUpdatingLocation()
+        setRegionAndAnnotation(coordinate: coordinate)
     }
     
     //사용자 위치 가져오기 실패
