@@ -11,15 +11,14 @@ extension DTO {
     
     // MARK: - WeatherResponseModel
     struct WeatherResponseModel: Codable {
-        let weather: [Weather]
         let main: Main
         let wind: Wind
     }
     
     // MARK: - Main
     struct Main: Codable {
-        let temp, tempMin, tempMax: Double
-        let humidity: Int
+        let temp, tempMin, tempMax: Double?
+        let humidity: Int?
         
         enum CodingKeys: String, CodingKey {
             case temp
@@ -29,15 +28,9 @@ extension DTO {
         }
     }
     
-    // MARK: - Weather
-    struct Weather: Codable {
-        let id: Int
-        let main, description, icon: String
-    }
-    
     // MARK: - Wind
     struct Wind: Codable {
-        let speed: Double
+        let speed: Double?
     }
     
 }
