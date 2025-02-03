@@ -13,6 +13,7 @@ import SnapKit
 final class WeatherViewController: UIViewController {
     
     private var currentAnnotation: MKPointAnnotation?
+    private var isRefresh = true
     private lazy var locationManager = CLLocationManager()
     
     private let mapView: MKMapView = {
@@ -82,6 +83,7 @@ final class WeatherViewController: UIViewController {
         [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
             view.addSubview($0)
             $0.setLabelUI("notYet", font: .systemFont(ofSize: 14, weight: .semibold))
+            $0.isHidden = true
         }
     }
     
@@ -162,8 +164,11 @@ private extension WeatherViewController {
                     self.checkCurrentLocationAuth(status: locationAuth)
                 }
             } else {
-                print("권한 설정해줘~")
-                print("설정 창으로 이동!")
+                //디바이스 위치 서비스 off 상태
+                DispatchQueue.main.async {
+                    let coordinate = CLLocationCoordinate2D(latitude: 37.6545021055909, longitude: 127.049672533607)
+                    self.setRegionAndAnnotation(coordinate: coordinate, isValidLocationAuth: false)
+                }
             }
         }
     }
@@ -177,11 +182,18 @@ private extension WeatherViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()
         case .denied:
-            //위치 권한 거부 시: 도봉 캠퍼스가 맵뷰 중심으로.
+            //앱 내 위치 권한 거부 시: 도봉 캠퍼스가 맵뷰 중심으로.
             print("checkLocationAuthStatus denied")
             let coordinate = CLLocationCoordinate2D(latitude: 37.6545021055909, longitude: 127.049672533607)
             setRegionAndAnnotation(coordinate: coordinate, isValidLocationAuth: false)
-            showAlertAboutLocationSetting()
+            
+            //현위치를 눌렀을 때만 alert이 동작하도록 isRefresh 변수 활용
+            if !isRefresh {
+                showAlertAboutLocationSetting()
+                print("before isRefresh: \(isRefresh)")
+                isRefresh = true
+                print("after isRefresh: \(isRefresh)")
+            }
         case .authorizedWhenInUse:
             print("checkLocationAuthStatus authorizedWhenInUse")
             locationManager.startUpdatingLocation()
@@ -230,7 +242,7 @@ private extension WeatherViewController {
         NetworkManager.shared.getWeatherAPI(apiHandler: .getWeatherAPI(request: request), responseModel: DTO.WeatherResponseModel.self) { result in
             switch result {
             case .success(let success):
-                print("success: \(success)")
+//                print("success: \(success)")
                 self.configureWeatherUI(result: success)
             case .failure(let failure):
                 print("failure: \(failure)")
@@ -239,11 +251,25 @@ private extension WeatherViewController {
     }
     
     func configureWeatherUI(result: DTO.WeatherResponseModel) {
-        tempLabel.text = "현재 온도" + String(result.main.temp)
-        tempMinLabel.text = "최저 온도" + String(result.main.tempMin)
-        tempMaxLabel.text = "최고 온도" + String(result.main.tempMax)
-        humidityLabel.text = "습도" + String(result.main.humidity)
-        speedLabel.text = "풍속" + String(result.wind.speed)
+        weatherInfoLabel.isHidden = true
+        [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
+            $0.alpha = 0
+            $0.isHidden = false
+        }
+        
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self else { return }
+            tempLabel.text = "현재 온도" + String(result.main.temp)
+            tempMinLabel.text = "최저 온도" + String(result.main.tempMin)
+            tempMaxLabel.text = "최고 온도" + String(result.main.tempMax)
+            humidityLabel.text = "습도" + String(result.main.humidity)
+            speedLabel.text = "풍속" + String(result.wind.speed)
+            
+            [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
+                $0.alpha = 1
+            }
+        }
+        
     }
     
     // MARK: - Actions
@@ -251,6 +277,7 @@ private extension WeatherViewController {
     func currentLocationButtonTapped() {
         // 현재 위치 가져오기 구현
         print(#function)
+        isRefresh = false
         checkDevicelocationAuth()
     }
     
@@ -258,6 +285,9 @@ private extension WeatherViewController {
     func refreshButtonTapped() {
         // 날씨 새로고침 구현
         print(#function)
+        //현재 혹은 도봉캠퍼스에 대한 날씨를 불러와야 하므로 위치 권한 여부를 다시 살피고,
+        //  이후 분기처리에 알맞게 위치 값을 불러와 날씨를 조회 후 UI에 세팅 (no alert)
+        checkDevicelocationAuth()
     }
     
 }
