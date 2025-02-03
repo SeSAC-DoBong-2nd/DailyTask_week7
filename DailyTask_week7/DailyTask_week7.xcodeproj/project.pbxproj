@@ -15,11 +15,7 @@
 		9EFEF0202D509EB90028E0E3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFEF01F2D509EB90028E0E3 /* Alamofire */; };
 		9EFEF0232D509EC20028E0E3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFEF0222D509EC20028E0E3 /* SnapKit */; };
 		9EFEF02D2D509F710028E0E3 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0282D509F710028E0E3 /* UILabel+.swift */; };
-		9EFEF02F2D509F710028E0E3 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0262D509F710028E0E3 /* UIFont+.swift */; };
-		9EFEF0302D509F710028E0E3 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0252D509F710028E0E3 /* UIButton+.swift */; };
 		9EFEF0312D509F710028E0E3 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF02B2D509F710028E0E3 /* UIView+.swift */; };
-		9EFEF0322D509F710028E0E3 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF02A2D509F710028E0E3 /* UITextField+.swift */; };
-		9EFEF0332D509F710028E0E3 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0292D509F710028E0E3 /* UIStackView+.swift */; };
 		9EFEF0392D50A7FB0028E0E3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFEF0382D50A7FB0028E0E3 /* Then */; };
 		9EFEF03C2D50B55B0028E0E3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF03B2D50B55B0028E0E3 /* Config.swift */; };
 		9EFEF03F2D50B5D70028E0E3 /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9EFEF03E2D50B5D70028E0E3 /* Secret.xcconfig */; };
@@ -39,11 +35,7 @@
 		9EFEF00F2D509D550028E0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9EFEF0132D509D550028E0E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		9EFEF0252D509F710028E0E3 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
-		9EFEF0262D509F710028E0E3 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		9EFEF0282D509F710028E0E3 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
-		9EFEF0292D509F710028E0E3 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
-		9EFEF02A2D509F710028E0E3 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		9EFEF02B2D509F710028E0E3 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		9EFEF03B2D50B55B0028E0E3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		9EFEF03E2D50B5D70028E0E3 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
@@ -112,11 +104,7 @@
 		9EFEF02C2D509F710028E0E3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9EFEF0252D509F710028E0E3 /* UIButton+.swift */,
-				9EFEF0262D509F710028E0E3 /* UIFont+.swift */,
 				9EFEF0282D509F710028E0E3 /* UILabel+.swift */,
-				9EFEF0292D509F710028E0E3 /* UIStackView+.swift */,
-				9EFEF02A2D509F710028E0E3 /* UITextField+.swift */,
 				9EFEF02B2D509F710028E0E3 /* UIView+.swift */,
 			);
 			path = Extensions;
@@ -266,14 +254,10 @@
 				9EFEF0442D50B7720028E0E3 /* DTO.swift in Sources */,
 				9EFEF0182D509D550028E0E3 /* WeatherViewController.swift in Sources */,
 				9EFEF02D2D509F710028E0E3 /* UILabel+.swift in Sources */,
-				9EFEF02F2D509F710028E0E3 /* UIFont+.swift in Sources */,
-				9EFEF0302D509F710028E0E3 /* UIButton+.swift in Sources */,
 				9EFEF0312D509F710028E0E3 /* UIView+.swift in Sources */,
 				9EFEF04F2D50B9730028E0E3 /* WeatherTargetType.swift in Sources */,
 				9EFEF03C2D50B55B0028E0E3 /* Config.swift in Sources */,
-				9EFEF0322D509F710028E0E3 /* UITextField+.swift in Sources */,
 				9EFEF04B2D50B8AA0028E0E3 /* WeatherRequestModel.swift in Sources */,
-				9EFEF0332D509F710028E0E3 /* UIStackView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
