@@ -11,7 +11,9 @@ import MapKit
 import SnapKit
 
 final class WeatherViewController: UIViewController {
-     
+    
+    private lazy var locationManager = CLLocationManager()
+    
     private let mapView: MKMapView = {
         let view = MKMapView()
         return view
@@ -55,6 +57,8 @@ final class WeatherViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setDelegate()
         setupUI()
         setupConstraints()
         setupActions()
@@ -93,20 +97,123 @@ final class WeatherViewController: UIViewController {
         }
     }
     
+    private func setDelegate() {
+        locationManager.delegate = self
+    }
+    
     private func setupActions() {
         currentLocationButton.addTarget(self, action: #selector(currentLocationButtonTapped), for: .touchUpInside)
         refreshButton.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
     }
     
+}
+
+private extension WeatherViewController {
+    
+    func checkDevicelocationAuth() {
+        print(#function)
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                let locationAuth: CLAuthorizationStatus
+                if #available(iOS 14.0, *) {
+                    locationAuth = self.locationManager.authorizationStatus
+                } else {
+                    locationAuth = CLLocationManager.authorizationStatus()
+                }
+                DispatchQueue.main.async {
+                    self.checkCurrentLocationAuth(status: locationAuth)
+                }
+            } else {
+                print("권한 설정해줘~")
+                print("설정 창으로 이동!")
+            }
+        }
+    }
+    
+    func checkCurrentLocationAuth(status: CLAuthorizationStatus) {
+        let status = locationManager.authorizationStatus
+        
+        switch status {
+        case .notDetermined:
+            print("checkLocationAuthStatus notDetermined")
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        case .denied:
+            //위치 권한 거부 시: 도봉 캠퍼스가 맵뷰 중심으로.
+            print("checkLocationAuthStatus denied")
+            let coordinate = CLLocationCoordinate2D(latitude: 37.6545021055909, longitude: 127.049672533607)
+            setRegionAndAnnotation(coordinate: coordinate)
+        case .authorizedWhenInUse:
+            print("checkLocationAuthStatus authorizedWhenInUse")
+            locationManager.startUpdatingLocation()
+        default:
+            print("오류 출동")
+        }
+    }
+    
+    ///위치 설정 이동 alert 표시
+    func showAlertAboutLocationSetting() {
+        let alert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요" ,preferredStyle: .alert)
+        let goSetting = UIAlertAction(title: "27OE O5", style: .default) { _ in
+            if let setting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(setting)
+            }
+        }
+        let cancel = UIAlertAction (title: "#1", style: .cancel)
+        alert.addAction (goSetting)
+        alert.addAction (cancel)
+        present(alert, animated: true)
+    }
+    
+    func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+        mapView.setRegion(region, animated: true)
+    }
+    
     // MARK: - Actions
     @objc
-    private func currentLocationButtonTapped() {
+    func currentLocationButtonTapped() {
         // 현재 위치 가져오기 구현
+        print(#function)
     }
     
     @objc
-    private func refreshButtonTapped() {
+    func refreshButtonTapped() {
         // 날씨 새로고침 구현
+        print(#function)
+    }
+    
+}
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    
+    //아이폰 고유 위치권한 값 변경시.
+    //iOS 14 이상
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        print(#function)
+        checkDevicelocationAuth()
+    }
+    
+    //아이폰 고유 위치권한 값 변경시.
+    //iOS 14 미만
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print(#function)
+    }
+    
+    //사용자 위치 가져오기 성공
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(#function)
+        print()
+        guard let coordinate = locations.last?.coordinate
+        else { return print("guard let region error") }
+        setRegionAndAnnotation(coordinate: coordinate)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    //사용자 위치 가져오기 실패
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print(#function)
+        
     }
     
 }

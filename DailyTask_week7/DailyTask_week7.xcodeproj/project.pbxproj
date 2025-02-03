@@ -20,6 +20,7 @@
 		9EFEF0312D509F710028E0E3 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF02B2D509F710028E0E3 /* UIView+.swift */; };
 		9EFEF0322D509F710028E0E3 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF02A2D509F710028E0E3 /* UITextField+.swift */; };
 		9EFEF0332D509F710028E0E3 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0292D509F710028E0E3 /* UIStackView+.swift */; };
+		9EFEF0392D50A7FB0028E0E3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFEF0382D50A7FB0028E0E3 /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFEF0202D509EB90028E0E3 /* Alamofire in Frameworks */,
+				9EFEF0392D50A7FB0028E0E3 /* Then in Frameworks */,
 				9EFEF0232D509EC20028E0E3 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				9EFEF0152D509D550028E0E3 /* DailyTask_week7 */,
+				9EFEF0372D50A7FB0028E0E3 /* Frameworks */,
 				9EFEEFF52D509D4E0028E0E3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,6 +105,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9EFEF0372D50A7FB0028E0E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,6 +131,7 @@
 			packageProductDependencies = (
 				9EFEF01F2D509EB90028E0E3 /* Alamofire */,
 				9EFEF0222D509EC20028E0E3 /* SnapKit */,
+				9EFEF0382D50A7FB0028E0E3 /* Then */,
 			);
 			productName = DailyTask_week7;
 			productReference = 9EFEEFF42D509D4E0028E0E3 /* DailyTask_week7.app */;
@@ -449,6 +460,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9EFEF0212D509EC20028E0E3 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		9EFEF0382D50A7FB0028E0E3 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9EFEF0242D509ECB0028E0E3 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
