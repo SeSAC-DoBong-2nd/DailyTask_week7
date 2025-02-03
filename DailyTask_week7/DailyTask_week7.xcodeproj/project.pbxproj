@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */; };
 		9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0132D509D550028E0E3 /* SceneDelegate.swift */; };
-		9EFEF0182D509D550028E0E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0142D509D550028E0E3 /* ViewController.swift */; };
+		9EFEF0182D509D550028E0E3 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */; };
 		9EFEF0192D509D550028E0E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFEF00D2D509D550028E0E3 /* Assets.xcassets */; };
 		9EFEF01B2D509D550028E0E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EFEF0102D509D550028E0E3 /* LaunchScreen.storyboard */; };
 		9EFEF0202D509EB90028E0E3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFEF01F2D509EB90028E0E3 /* Alamofire */; };
@@ -30,7 +30,7 @@
 		9EFEF00E2D509D550028E0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EFEF00F2D509D550028E0E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9EFEF0132D509D550028E0E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9EFEF0142D509D550028E0E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		9EFEF0252D509F710028E0E3 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		9EFEF0262D509F710028E0E3 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		9EFEF0272D509F710028E0E3 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 				9EFEF00E2D509D550028E0E3 /* Info.plist */,
 				9EFEF00D2D509D550028E0E3 /* Assets.xcassets */,
 				9EFEF01D2D509D590028E0E3 /* Application */,
-				9EFEF0142D509D550028E0E3 /* ViewController.swift */,
+				9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */,
 				9EFEF02C2D509F710028E0E3 /* Extensions */,
 			);
 			path = DailyTask_week7;
@@ -187,7 +187,7 @@
 			files = (
 				9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */,
 				9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */,
-				9EFEF0182D509D550028E0E3 /* ViewController.swift in Sources */,
+				9EFEF0182D509D550028E0E3 /* WeatherViewController.swift in Sources */,
 				9EFEF02D2D509F710028E0E3 /* UILabel+.swift in Sources */,
 				9EFEF02E2D509F710028E0E3 /* UIImageView+.swift in Sources */,
 				9EFEF02F2D509F710028E0E3 /* UIFont+.swift in Sources */,
