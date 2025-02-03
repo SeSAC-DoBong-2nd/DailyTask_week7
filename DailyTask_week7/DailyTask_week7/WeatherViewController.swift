@@ -28,6 +28,12 @@ final class WeatherViewController: UIViewController {
         return label
     }()
     
+    private let tempLabel = UILabel()
+    private let tempMinLabel = UILabel()
+    private let tempMaxLabel = UILabel()
+    private let humidityLabel = UILabel()
+    private let speedLabel = UILabel()
+    
     private let currentLocationButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "location.fill"), for: .normal)
@@ -71,6 +77,11 @@ final class WeatherViewController: UIViewController {
         [mapView, weatherInfoLabel, currentLocationButton, refreshButton].forEach {
             view.addSubview($0)
         }
+        
+        [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
+            view.addSubview($0)
+            $0.setLabelUI("notYet", font: .systemFont(ofSize: 12, weight: .black))
+        }
     }
     
     private func setupConstraints() {
@@ -94,6 +105,31 @@ final class WeatherViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
             make.width.height.equalTo(50)
+        }
+        
+        tempLabel.snp.makeConstraints {
+            $0.top.equalTo(weatherInfoLabel.snp.bottom).offset(4)
+            $0.centerX.equalToSuperview()
+        }
+        
+        tempMinLabel.snp.makeConstraints {
+            $0.top.equalTo(tempLabel.snp.bottom).offset(4)
+            $0.centerX.equalTo(tempLabel.snp.centerX)
+        }
+        
+        tempMaxLabel.snp.makeConstraints {
+            $0.top.equalTo(tempMinLabel.snp.bottom).offset(4)
+            $0.centerX.equalTo(tempLabel.snp.centerX)
+        }
+        
+        humidityLabel.snp.makeConstraints {
+            $0.top.equalTo(tempMaxLabel.snp.bottom).offset(4)
+            $0.centerX.equalTo(tempLabel.snp.centerX)
+        }
+        
+        speedLabel.snp.makeConstraints {
+            $0.top.equalTo(humidityLabel.snp.bottom).offset(4)
+            $0.centerX.equalTo(tempLabel.snp.centerX)
         }
     }
     
@@ -167,8 +203,32 @@ private extension WeatherViewController {
     }
     
     func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D) {
+        //현재 위치 날씨 받아오기
+        getWeatherAPIResponse(lat: coordinate.latitude, lon: coordinate.longitude)
+        
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func getWeatherAPIResponse(lat: Double, lon: Double) {
+        let request = DTO.WeatherRequestModel(lat: lat, lon: lon)
+        NetworkManager.shared.getWeatherAPI(apiHandler: .getWeatherAPI(request: request), responseModel: DTO.WeatherResponseModel.self) { result in
+            switch result {
+            case .success(let success):
+                print("success: \(success)")
+                self.configureWeatherUI(result: success)
+            case .failure(let failure):
+                print("failure: \(failure)")
+            }
+        }
+    }
+    
+    func configureWeatherUI(result: DTO.WeatherResponseModel) {
+        tempLabel.text = "현재 온도" + String(result.main.temp)
+        tempMinLabel.text = "최저 온도" + String(result.main.tempMin)
+        tempMaxLabel.text = "최고 온도" + String(result.main.tempMax)
+        humidityLabel.text = "습도" + String(result.main.humidity)
+        speedLabel.text = "풍속" + String(result.wind.speed)
     }
     
     // MARK: - Actions
@@ -208,16 +268,6 @@ extension WeatherViewController: CLLocationManagerDelegate {
         print()
         guard let coordinate = locations.last?.coordinate
         else { return print("guard let region error") }
-        
-        let request = DTO.WeatherRequestModel(lat: coordinate.latitude, lon: coordinate.longitude)
-        NetworkManager.shared.getWeatherAPI(apiHandler: .getWeatherAPI(request: request), responseModel: DTO.WeatherResponseModel.self) { result in
-            switch result {
-            case .success(let success):
-                print("success: \(success)")
-            case .failure(let failure):
-                print("failure: \(failure)")
-            }
-        }
         
         setRegionAndAnnotation(coordinate: coordinate)
         locationManager.stopUpdatingLocation()
