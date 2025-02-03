@@ -143,6 +143,7 @@ private extension WeatherViewController {
             print("checkLocationAuthStatus denied")
             let coordinate = CLLocationCoordinate2D(latitude: 37.6545021055909, longitude: 127.049672533607)
             setRegionAndAnnotation(coordinate: coordinate)
+            showAlertAboutLocationSetting()
         case .authorizedWhenInUse:
             print("checkLocationAuthStatus authorizedWhenInUse")
             locationManager.startUpdatingLocation()
@@ -153,15 +154,15 @@ private extension WeatherViewController {
     
     ///위치 설정 이동 alert 표시
     func showAlertAboutLocationSetting() {
-        let alert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요" ,preferredStyle: .alert)
-        let goSetting = UIAlertAction(title: "27OE O5", style: .default) { _ in
+        let alert = UIAlertController(title: "위치 정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요." ,preferredStyle: .alert)
+        let goSetting = UIAlertAction(title: "설정 창 이동", style: .default) { _ in
             if let setting = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(setting)
             }
         }
-        let cancel = UIAlertAction (title: "#1", style: .cancel)
-        alert.addAction (goSetting)
+        let cancel = UIAlertAction (title: "취소", style: .destructive)
         alert.addAction (cancel)
+        alert.addAction (goSetting)
         present(alert, animated: true)
     }
     
