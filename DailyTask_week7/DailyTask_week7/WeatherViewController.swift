@@ -175,6 +175,7 @@ private extension WeatherViewController {
     func currentLocationButtonTapped() {
         // 현재 위치 가져오기 구현
         print(#function)
+        checkDevicelocationAuth()
     }
     
     @objc
