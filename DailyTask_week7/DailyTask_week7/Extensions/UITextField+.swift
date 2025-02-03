@@ -20,7 +20,7 @@ extension UITextField {
         case false:
             let imageView = UIImageView(frame: CGRect(x: inset, y: 0, width: amount, height: self.frame.size.height))
             imageView.image = image
-            imageView.tintColor = .gray1
+            imageView.tintColor = .black
             imageView.contentMode = .center
             
             containerView.addSubview(imageView)

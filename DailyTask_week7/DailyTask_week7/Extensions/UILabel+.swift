@@ -50,7 +50,7 @@ extension UILabel {
     // 기본 라벨 속성 설정 메소드
     func setLabelUI(_ text: String,
                     font: UIFont,
-                    textColor: UIColor = UIColor(resource: .title),
+                    textColor: UIColor = .black,
                     alignment: NSTextAlignment = .left,
                     numberOfLines: Int = 1) {
         self.text = text
