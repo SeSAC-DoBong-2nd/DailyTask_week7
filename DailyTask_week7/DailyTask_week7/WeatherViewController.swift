@@ -12,6 +12,7 @@ import SnapKit
 
 final class WeatherViewController: UIViewController {
     
+    private var currentAnnotation: MKPointAnnotation?
     private lazy var locationManager = CLLocationManager()
     
     private let mapView: MKMapView = {
@@ -80,7 +81,7 @@ final class WeatherViewController: UIViewController {
         
         [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
             view.addSubview($0)
-            $0.setLabelUI("notYet", font: .systemFont(ofSize: 12, weight: .black))
+            $0.setLabelUI("notYet", font: .systemFont(ofSize: 14, weight: .semibold))
         }
     }
     
@@ -108,33 +109,34 @@ final class WeatherViewController: UIViewController {
         }
         
         tempLabel.snp.makeConstraints {
-            $0.top.equalTo(weatherInfoLabel.snp.bottom).offset(4)
+            $0.top.equalTo(weatherInfoLabel.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
         }
         
         tempMinLabel.snp.makeConstraints {
-            $0.top.equalTo(tempLabel.snp.bottom).offset(4)
+            $0.top.equalTo(tempLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(tempLabel.snp.centerX)
         }
         
         tempMaxLabel.snp.makeConstraints {
-            $0.top.equalTo(tempMinLabel.snp.bottom).offset(4)
+            $0.top.equalTo(tempMinLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(tempLabel.snp.centerX)
         }
         
         humidityLabel.snp.makeConstraints {
-            $0.top.equalTo(tempMaxLabel.snp.bottom).offset(4)
+            $0.top.equalTo(tempMaxLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(tempLabel.snp.centerX)
         }
         
         speedLabel.snp.makeConstraints {
-            $0.top.equalTo(humidityLabel.snp.bottom).offset(4)
+            $0.top.equalTo(humidityLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(tempLabel.snp.centerX)
         }
     }
     
     private func setDelegate() {
         locationManager.delegate = self
+        mapView.delegate = self
     }
     
     private func setupActions() {
@@ -178,7 +180,7 @@ private extension WeatherViewController {
             //위치 권한 거부 시: 도봉 캠퍼스가 맵뷰 중심으로.
             print("checkLocationAuthStatus denied")
             let coordinate = CLLocationCoordinate2D(latitude: 37.6545021055909, longitude: 127.049672533607)
-            setRegionAndAnnotation(coordinate: coordinate)
+            setRegionAndAnnotation(coordinate: coordinate, isValidLocationAuth: false)
             showAlertAboutLocationSetting()
         case .authorizedWhenInUse:
             print("checkLocationAuthStatus authorizedWhenInUse")
@@ -202,12 +204,25 @@ private extension WeatherViewController {
         present(alert, animated: true)
     }
     
-    func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D) {
+    func setRegionAndAnnotation(coordinate: CLLocationCoordinate2D, isValidLocationAuth: Bool = true) {
         //현재 위치 날씨 받아오기
         getWeatherAPIResponse(lat: coordinate.latitude, lon: coordinate.longitude)
         
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
         mapView.setRegion(region, animated: true)
+        
+        //이전에 등록된 핀이 있다면 삭제
+        if currentAnnotation != nil {
+            guard let currentAnnotation else { return }
+            mapView.removeAnnotation(currentAnnotation)
+        }
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        
+        //LocationAuth 값에 따라 핀 title 분기 처리
+        annotation.title = isValidLocationAuth ? "내 위치" : "도봉캠퍼스"
+        mapView.addAnnotation(annotation)
+        currentAnnotation = annotation
     }
     
     func getWeatherAPIResponse(lat: Double, lon: Double) {
@@ -278,5 +293,9 @@ extension WeatherViewController: CLLocationManagerDelegate {
         print(#function)
         
     }
+    
+}
+
+extension WeatherViewController: MKMapViewDelegate {
     
 }
