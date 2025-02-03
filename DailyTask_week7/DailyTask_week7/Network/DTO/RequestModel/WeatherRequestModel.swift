@@ -15,6 +15,7 @@ extension DTO {
         let lat: Double
         let lon: Double
         var appid = accessToken
+        var units: String = "metric"
     }
     
 }

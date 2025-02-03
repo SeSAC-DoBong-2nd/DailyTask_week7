@@ -259,11 +259,11 @@ private extension WeatherViewController {
         
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self else { return }
-            tempLabel.text = "현재 온도" + String(result.main.temp)
-            tempMinLabel.text = "최저 온도" + String(result.main.tempMin)
-            tempMaxLabel.text = "최고 온도" + String(result.main.tempMax)
-            humidityLabel.text = "습도" + String(result.main.humidity)
-            speedLabel.text = "풍속" + String(result.wind.speed)
+            tempLabel.text = "현재 온도: " + String(result.main.temp)
+            tempMinLabel.text = "최저 온도: " + String(result.main.tempMin)
+            tempMaxLabel.text = "최고 온도: " + String(result.main.tempMax)
+            humidityLabel.text = "습도: " + String(result.main.humidity) + "%"
+            speedLabel.text = "풍속: " + String(result.wind.speed)
             
             [tempLabel, tempMinLabel, tempMaxLabel, humidityLabel, speedLabel].forEach {
                 $0.alpha = 1
