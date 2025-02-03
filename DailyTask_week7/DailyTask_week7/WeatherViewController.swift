@@ -57,7 +57,7 @@ final class WeatherViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                              
         setDelegate()
         setupUI()
         setupConstraints()
@@ -208,6 +208,17 @@ extension WeatherViewController: CLLocationManagerDelegate {
         print()
         guard let coordinate = locations.last?.coordinate
         else { return print("guard let region error") }
+        
+        let request = DTO.WeatherRequestModel(lat: coordinate.latitude, lon: coordinate.longitude)
+        NetworkManager.shared.getWeatherAPI(apiHandler: .getWeatherAPI(request: request), responseModel: DTO.WeatherResponseModel.self) { result in
+            switch result {
+            case .success(let success):
+                print("success: \(success)")
+            case .failure(let failure):
+                print("failure: \(failure)")
+            }
+        }
+        
         setRegionAndAnnotation(coordinate: coordinate)
         locationManager.stopUpdatingLocation()
     }
