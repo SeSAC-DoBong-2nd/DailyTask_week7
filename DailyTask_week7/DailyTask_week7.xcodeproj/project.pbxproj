@@ -12,6 +12,7 @@
 		9ED963152D537E3F008E82B9 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED963142D537E3F008E82B9 /* CurrencyViewController.swift */; };
 		9ED9631B2D537EA8008E82B9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED963192D537EA8008E82B9 /* UserViewController.swift */; };
 		9ED9631C2D537EA8008E82B9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9631A2D537EA8008E82B9 /* UserViewModel.swift */; };
+		9ED9631E2D537ED7008E82B9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9631D2D537ED7008E82B9 /* Observable.swift */; };
 		9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */; };
 		9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0132D509D550028E0E3 /* SceneDelegate.swift */; };
 		9EFEF0182D509D550028E0E3 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */; };
@@ -39,6 +40,7 @@
 		9ED963172D537E5B008E82B9 /* WordCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCounterViewController.swift; sourceTree = "<group>"; };
 		9ED963192D537EA8008E82B9 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		9ED9631A2D537EA8008E82B9 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		9ED9631D2D537ED7008E82B9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		9EFEEFF42D509D4E0028E0E3 /* DailyTask_week7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTask_week7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EFEF00D2D509D550028E0E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				9EFEF0282D509F710028E0E3 /* UILabel+.swift */,
 				9EFEF02B2D509F710028E0E3 /* UIView+.swift */,
 				9ED963002D52DE2D008E82B9 /* PhotoCollectionViewCell.swift */,
+				9ED9631D2D537ED7008E82B9 /* Observable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */,
 				9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */,
 				9EFEF0422D50B7520028E0E3 /* WeatherResponseModel.swift in Sources */,
+				9ED9631E2D537ED7008E82B9 /* Observable.swift in Sources */,
 				9ED963152D537E3F008E82B9 /* CurrencyViewController.swift in Sources */,
 				9EFEF0492D50B8570028E0E3 /* NetworkManager.swift in Sources */,
 				9EFEF0442D50B7720028E0E3 /* DTO.swift in Sources */,
