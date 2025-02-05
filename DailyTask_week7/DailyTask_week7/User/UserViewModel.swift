@@ -17,13 +17,23 @@ class UserViewModel {
     var person: Observable<[Person]> = Observable([])
     var inputLoadTapped = Observable(())
     var resetButtonTapped = Observable(())
+    var addButtonTapped = Observable(())
+    var reloadTrigger = Observable(())
     
     init() {
-        inputLoadTapped.bind { _ in
+        inputLoadTapped.lazyBind { _ in
             self.load()
+            self.reloadDataTrigger()
         }
-        resetButtonTapped.bind { _ in
+        
+        resetButtonTapped.lazyBind { _ in
             self.reset()
+            self.reloadDataTrigger()
+        }
+        
+        addButtonTapped.lazyBind { _ in
+            self.add()
+            self.reloadDataTrigger()
         }
     }
     
@@ -39,6 +49,16 @@ class UserViewModel {
     
     private func reset() {
         person.value.removeAll()
+    }
+    
+    private func add() {
+        let names = ["James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Linda", "William", "Elizabeth", "David", "Barbara", "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah", "Charles", "Karen"]
+        let user = Person(name: names.randomElement()!, age: Int.random(in: 20...70))
+        person.value.append(user)
+    }
+    
+    private func reloadDataTrigger() {
+        reloadTrigger.value = ()
     }
     
 }
