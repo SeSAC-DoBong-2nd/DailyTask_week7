@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct Person {
+    let name: String
+    let age: Int
+}
+
 class UserViewModel {
     
     var person: Observable<[Person]> = Observable([])

@@ -6,9 +6,10 @@
 //
 
 import UIKit
+
 import SnapKit
  
-class WordCounterViewController: UIViewController {
+final class WordCounterViewController: UIViewController {
     
     private let textView: UITextView = {
         let textView = UITextView()

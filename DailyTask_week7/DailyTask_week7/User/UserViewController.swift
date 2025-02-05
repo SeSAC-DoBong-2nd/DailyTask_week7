@@ -6,9 +6,10 @@
 //
 
 import UIKit
+
 import SnapKit
 
-class UserViewController: UIViewController {
+final class UserViewController: UIViewController {
  
     private var people: [Person] = []
     
