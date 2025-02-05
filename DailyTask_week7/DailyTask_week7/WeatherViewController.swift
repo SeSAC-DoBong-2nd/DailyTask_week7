@@ -16,6 +16,7 @@ final class WeatherViewController: UIViewController {
     private var isRefresh = true
     private lazy var locationManager = CLLocationManager()
     
+    private let imageView = UIImageView()
     private let mapView: MKMapView = {
         let view = MKMapView()
         return view
@@ -67,6 +68,7 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
                               
         setDelegate()
+        setNav()
         setupUI()
         setupConstraints()
         setupActions()
@@ -85,6 +87,13 @@ final class WeatherViewController: UIViewController {
             $0.setLabelUI("notYet", font: .systemFont(ofSize: 14, weight: .semibold))
             $0.isHidden = true
         }
+        
+        view.addSubview(imageView)
+        imageView.backgroundColor = .brown
+    }
+    
+    private func setNav() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "사진", style: .done, target: self, action: #selector(navTapped))
     }
     
     private func setupConstraints() {
@@ -134,6 +143,13 @@ final class WeatherViewController: UIViewController {
             $0.top.equalTo(humidityLabel.snp.bottom).offset(10)
             $0.centerX.equalTo(tempLabel.snp.centerX)
         }
+        
+        imageView.snp.makeConstraints {
+            $0.top.equalTo(weatherInfoLabel.snp.top)
+            $0.trailing.equalToSuperview()
+            $0.size.equalTo(60)
+        }
+    
     }
     
     private func setDelegate() {
@@ -286,6 +302,18 @@ private extension WeatherViewController {
         //현재 혹은 도봉캠퍼스에 대한 날씨를 불러와야 하므로 위치 권한 여부를 다시 살피고,
         //  이후 분기처리에 알맞게 위치 값을 불러와 날씨를 조회 후 UI에 세팅 (no alert)
         checkDevicelocationAuth()
+    }
+    
+    @objc
+    func navTapped() {
+        print(#function)
+        let vc = PhotoViewController()
+        vc.onChange = { [weak self] image in
+            guard let self else {return print("guard let self error")}
+            self.imageView.image = image
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
