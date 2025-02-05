@@ -14,6 +14,8 @@
 		9ED9631C2D537EA8008E82B9 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9631A2D537EA8008E82B9 /* UserViewModel.swift */; };
 		9ED9631E2D537ED7008E82B9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9631D2D537ED7008E82B9 /* Observable.swift */; };
 		9ED963202D538232008E82B9 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9631F2D538232008E82B9 /* CurrencyViewModel.swift */; };
+		9ED963222D5384D2008E82B9 /* WordCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED963212D5384D2008E82B9 /* WordCounterViewModel.swift */; };
+		9ED963242D53858E008E82B9 /* WordCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED963232D53858E008E82B9 /* WordCounterViewController.swift */; };
 		9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */; };
 		9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0132D509D550028E0E3 /* SceneDelegate.swift */; };
 		9EFEF0182D509D550028E0E3 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */; };
@@ -38,11 +40,12 @@
 		9ED962FE2D52D7B3008E82B9 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		9ED963002D52DE2D008E82B9 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9ED963142D537E3F008E82B9 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
-		9ED963172D537E5B008E82B9 /* WordCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCounterViewController.swift; sourceTree = "<group>"; };
 		9ED963192D537EA8008E82B9 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		9ED9631A2D537EA8008E82B9 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		9ED9631D2D537ED7008E82B9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		9ED9631F2D538232008E82B9 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		9ED963212D5384D2008E82B9 /* WordCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCounterViewModel.swift; sourceTree = "<group>"; };
+		9ED963232D53858E008E82B9 /* WordCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCounterViewController.swift; sourceTree = "<group>"; };
 		9EFEEFF42D509D4E0028E0E3 /* DailyTask_week7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTask_week7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EFEF00D2D509D550028E0E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,7 +107,8 @@
 		9ED963162D537E43008E82B9 /* WordCounter */ = {
 			isa = PBXGroup;
 			children = (
-				9ED963172D537E5B008E82B9 /* WordCounterViewController.swift */,
+				9ED963212D5384D2008E82B9 /* WordCounterViewModel.swift */,
+				9ED963232D53858E008E82B9 /* WordCounterViewController.swift */,
 			);
 			path = WordCounter;
 			sourceTree = "<group>";
@@ -309,6 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED963242D53858E008E82B9 /* WordCounterViewController.swift in Sources */,
+				9ED963222D5384D2008E82B9 /* WordCounterViewModel.swift in Sources */,
 				9EFEF04D2D50B9300028E0E3 /* TargetType.swift in Sources */,
 				9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */,
 				9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */,
