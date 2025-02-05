@@ -90,8 +90,8 @@ final class CurrencyViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.output.bind { value in
-            self.resultLabel.text = value
+        viewModel.output.bind { [weak self] value in
+            self?.resultLabel.text = value
         }
     }
     

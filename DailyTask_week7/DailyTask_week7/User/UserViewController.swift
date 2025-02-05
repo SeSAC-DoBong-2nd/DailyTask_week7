@@ -105,8 +105,8 @@ final class UserViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.reloadTrigger.bind { _ in
-            self.tableView.reloadData()
+        viewModel.reloadTrigger.bind { [weak self] _ in
+            self?.tableView.reloadData()
         }
     }
      

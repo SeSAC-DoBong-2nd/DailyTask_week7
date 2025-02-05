@@ -13,8 +13,8 @@ final class CurrencyViewModel {
     let output = Observable("환전 결과가 여기에 표시됩니다")
     
     init() {
-        input.bind { value in
-            self.currencyExchange()
+        input.bind { [weak self] _ in
+            self?.currencyExchange()
         }
     }
     

@@ -21,17 +21,20 @@ class UserViewModel {
     var reloadTrigger = Observable(())
     
     init() {
-        inputLoadTapped.lazyBind { _ in
+        inputLoadTapped.lazyBind { [weak self] _ in
+            guard let self else {return}
             self.load()
             self.reloadDataTrigger()
         }
         
-        resetButtonTapped.lazyBind { _ in
+        resetButtonTapped.lazyBind { [weak self] _ in
+            guard let self else {return}
             self.reset()
             self.reloadDataTrigger()
         }
         
-        addButtonTapped.lazyBind { _ in
+        addButtonTapped.lazyBind { [weak self] _ in
+            guard let self else {return}
             self.add()
             self.reloadDataTrigger()
         }

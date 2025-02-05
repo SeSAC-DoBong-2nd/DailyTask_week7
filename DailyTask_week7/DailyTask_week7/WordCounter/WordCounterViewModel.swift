@@ -13,8 +13,8 @@ final class WordCounterViewModel {
     let output = Observable("현재까지 0글자 작성중")
     
     init() {
-        input.bind { value in
-            self.bindWordCounter()
+        input.bind { [weak self] _ in
+            self?.bindWordCounter()
         }
     }
     
