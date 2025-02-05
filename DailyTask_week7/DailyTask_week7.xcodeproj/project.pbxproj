@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9ED962FF2D52D7B3008E82B9 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED962FE2D52D7B3008E82B9 /* PhotoViewController.swift */; };
+		9ED963012D52DE2D008E82B9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED963002D52DE2D008E82B9 /* PhotoCollectionViewCell.swift */; };
 		9EFEF0162D509D550028E0E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */; };
 		9EFEF0172D509D550028E0E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0132D509D550028E0E3 /* SceneDelegate.swift */; };
 		9EFEF0182D509D550028E0E3 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFEF0142D509D550028E0E3 /* WeatherViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9ED962FE2D52D7B3008E82B9 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		9ED963002D52DE2D008E82B9 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EFEEFF42D509D4E0028E0E3 /* DailyTask_week7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTask_week7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFEF00C2D509D550028E0E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EFEF00D2D509D550028E0E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9ED962FD2D52D774008E82B9 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				9ED962FE2D52D7B3008E82B9 /* PhotoViewController.swift */,
+				9ED963002D52DE2D008E82B9 /* PhotoCollectionViewCell.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		9EFEEFEB2D509D4E0028E0E3 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +93,7 @@
 		9EFEF0152D509D550028E0E3 /* DailyTask_week7 */ = {
 			isa = PBXGroup;
 			children = (
+				9ED962FD2D52D774008E82B9 /* Photo */,
 				9EFEF0402D50B7420028E0E3 /* Network */,
 				9EFEF00E2D509D550028E0E3 /* Info.plist */,
 				9EFEF00D2D509D550028E0E3 /* Assets.xcassets */,
@@ -257,7 +271,9 @@
 				9EFEF0312D509F710028E0E3 /* UIView+.swift in Sources */,
 				9EFEF04F2D50B9730028E0E3 /* WeatherTargetType.swift in Sources */,
 				9EFEF03C2D50B55B0028E0E3 /* Config.swift in Sources */,
+				9ED963012D52DE2D008E82B9 /* PhotoCollectionViewCell.swift in Sources */,
 				9EFEF04B2D50B8AA0028E0E3 /* WeatherRequestModel.swift in Sources */,
+				9ED962FF2D52D7B3008E82B9 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
